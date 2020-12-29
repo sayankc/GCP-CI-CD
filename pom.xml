@@ -50,6 +50,15 @@
                         <testResultsTimestamp>false</testResultsTimestamp>
 						<propertiesUser>
 							<jmeter.save.saveservice.output_format>csv</jmeter.save.saveservice.output_format>
+							<jmeter.save.saveservice.bytes>true</jmeter.save.saveservice.bytes>
+							<jmeter.save.saveservice.label>true</jmeter.save.saveservice.label>
+							<jmeter.save.saveservice.latency>true</jmeter.save.saveservice.latency>
+							<jmeter.save.saveservice.response_code>true</jmeter.save.saveservice.response_code>
+							<jmeter.save.saveservice.response_message>true</jmeter.save.saveservice.response_message>
+							<jmeter.save.saveservice.successful>true</jmeter.save.saveservice.successful>
+							<jmeter.save.saveservice.thread_counts>true</jmeter.save.saveservice.thread_counts>
+							<jmeter.save.saveservice.thread_name>true</jmeter.save.saveservice.thread_name>
+							<jmeter.save.saveservice.time>true</jmeter.save.saveservice.time>
 							<Users>${users}</Users>
             				<Rampup>${rampUP}</Rampup>
             				<LoopCount>${loopCnt}</LoopCount>

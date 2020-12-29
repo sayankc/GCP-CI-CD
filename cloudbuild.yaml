@@ -1,6 +1,7 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'run', 'egaillardon/jmeter:5.1.1-2.0.0', 'pwd' ]
+- name: 'ubuntu'
+  args: ['ls', '-l', '/workspace/']
+
 - name: 'ubuntu'
   volumes:
   - name: 'vol1'
@@ -15,66 +16,21 @@ steps:
   - name: 'vol1'
     path: '/persistent_volume'
   args: ['cat', '/persistent_volume/file']
-
-- name: 'gcr.io/cloud-builders/docker'
-  volumes:
-  - name: 'vol1'
-    path: '/persistent_volume'
-  args: [ 'run', '--volume', '/workspace:/jmeter','egaillardon/jmeter:5.1.1-2.0.0', '--nongui', '--testfile', 'perf/GCP-Sample-1.jmx', '-Jhost=${UIURL}', '-Jport=${UIPORT}', '--logfile', '/jmeter/result/testoutput.jtl']
-
-- name: 'ubuntu'
-  args: ['ls', '-l', '/workspace/result/']
-
-- name: 'ubuntu'
-  args: ['chmod', '0777', '/workspace/result/testoutput.jtl']
-
-- name: 'ubuntu'
-  args: ['ls', '-l', '/workspace/result/']
-
- 
-- name: 'gcr.io/cloud-builders/docker'
-  volumes:
-  args: [ 'run', '--volume', '/workspace:/jmeter','egaillardon/jmeter:5.1.1-2.0.0','--reportonly', '/jmeter/result/testoutput.jtl', '--reportoutputfolder', '/jmeter/htmlresult' ]
   
-- name: 'ubuntu'
-  args: ['ls', '-l', '/workspace/htmlresult/']
-
-- name: 'ubuntu'
-  args: ['ls', '-l', '/workspace/htmlresult/content']
-  
-- name: 'ubuntu'
-  args: ['ls', '-l', '/workspace/htmlresult/sbadmin2-1.0.7']
-
-- name: 'ubuntu'
-  args: ['cat', '/workspace/result/testoutput.jtl']
+- name: maven:3.6-jdk-8
+  entrypoint: mvn
+  args: ['clean', 'verify', '-Dusers=1', '-DrampUP=2', '-DloopCnt=2', '-DUIHOST=${_UIHOST}', '-DUIPORT=${_UIPORT}']
 
 - name: 'ubuntu'
   args: ['ls', '-l', '/workspace/']
 
-- name: 'ubuntu'
-  args: ['chmod', '-R', '0777', '/workspace/maven_perf/']
-
-- name: 'ubuntu'
-  args: ['ls', '-l', '/workspace/maven_perf/']
-  
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['run',  '--volume', '/workspace/maven_perf/:/usr/src/mymaven','-w', '/usr/src/mymaven','maven:3.6-jdk-8','mvn', 'clean', 'verify', '-Dusers=1', '-DrampUP=2', '-DloopCnt=2', '-DUIHOST=reqres.in', '-DUIPORT=${_UIPORT}']
-  
-- name: 'ubuntu'
-  args: ['ls', '-l', '/workspace/maven_perf/target/jmeter/']
-
-- name: 'ubuntu'
-  args: ['cat', '/workspace/maven_perf/target/jmeter/logs/GCP-Sample-1.jmx.log']
-  
-- name: 'ubuntu'
-  args: ['cat', '/workspace/maven_perf/target/jmeter/results/GCP-Sample-1.csv']  
-
 substitutions:
     _PRJ: "v6.9.1"
     _UIPORT: "443"
-    
+    _UIHOST: "reqres.in"
+
 artifacts:
   objects:
-    location: 'gs://skc_bkt_1/perf_res'
-    paths: ['jmeter.log', 'result/*.*', 'htmlresult/*.*'] 
+    location: 'gs://skc_bkt_1/perf_res2'
+    paths: ['target/jmeter/results/*.*'] 
 
