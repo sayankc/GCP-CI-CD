@@ -13,7 +13,7 @@ Code sample has one jmeter performance script with two variations.
 3. the pipeline will demonstrate execution of the same and storage it in **Google cloud bucket** named _skc_bkt_1_ .
 
 ## How to Run
-- download google cloud SDK
+- Download google cloud SDK
 - Optionaliy save the same repo in google cloud
 
 ```
@@ -28,7 +28,7 @@ git add . & git commit -m "push 25" & git push -u origin master
 - trigger the pipeline via 
     - code push 
     - Manually 
-    - via google cloud SDK (using follow command).
+    - via google cloud SDK (using following command).
     
 _Note: You can control any run time value via substitutions_
 ```
