@@ -7,7 +7,7 @@ Refer the documentations
 - https://cloud.google.com/sdk/gcloud/reference/builds/submit
 
 ## About the code
-Code sample has one performance script with two variations.
+Code sample has one jmeter performance script with two variations.
 1. only jmx file and test data
 2. mavenized version of same jmeter project with error % validation
 3. the pipeline will demonstrate execution of the same and storage it in **Google cloud bucket** named _skc_bkt_1_ .
