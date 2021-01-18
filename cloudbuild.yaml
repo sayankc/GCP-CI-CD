@@ -11,6 +11,14 @@ steps:
   - '-c'
   - |
         echo "Hello, world! ${_PRJ} ${_UIPORT}" > /persistent_volume/file
+        no_failure_count=`cat /persistent_volume/file| grep -o "443" | wc -l`
+        echo "no_failure_count for 443 is $no_failure_count"
+
+        if [ "$no_failure_count" -ge 1 ]; then 
+        exit 0; 
+        else 
+        exit 255; 
+        fi
 - name: 'ubuntu'
   volumes:
   - name: 'vol1'
