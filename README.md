@@ -20,11 +20,15 @@ Code sample has one jmeter performance script with two variations.
 gcloud init
 gcloud info
 gcloud source repos clone gcp-sample-1 --project=gcp-workshop-trial
+##save the cloudbuild.yml as google cloud build pipeline.
 git add . & git commit -m "push 25" & git push -u origin master
+
+#create storage bucket ( onetime activity)
+gsutil mb -b on -l europe-west1 gs://skc_bkt_1/
+
 
 ```
 
-- save the yml as google cloud build pipeline.
 - trigger the pipeline via 
     - code push 
     - Manually 
@@ -33,5 +37,19 @@ git add . & git commit -m "push 25" & git push -u origin master
 _Note: You can control any run time value via substitutions_
 ```
 gcloud builds submit --config=cloudbuild.yaml --substitutions=_PRJ="v5.4"
+```
+
+- Add Public access to the storage bucket ( Not Secure)
+```
+gsutil iam ch allUsers:objectViewer gs://skc_bkt_1/
+```
+
+- Remove public access 
+```
+gsutil iam ch -d allUsers:objectViewer gs://skc_bkt_1/
+```
+- Delete the bucket
+```
+gsutil rm -r gs://skc_bkt_1/
 ```
 
