@@ -19,7 +19,7 @@ Code sample has one jmeter performance script with two variations.
 ```
 gcloud init
 gcloud info
-gcloud source repos clone gcp-sample-1 --project=gcp-workshop-trial
+gcloud source repos clone gcp-sample-1 --project=gcp-trial
 ##save the cloudbuild.yml as google cloud build pipeline.
 git add . & git commit -m "push 25" & git push -u origin master
 ```
