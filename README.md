@@ -24,7 +24,7 @@ gcloud source repos clone gcp-sample-1 --project=gcp-workshop-trial
 git add . & git commit -m "push 25" & git push -u origin master
 ```
 
-```
+
 - Create storage bucket ( onetime activity)
 
 ```
