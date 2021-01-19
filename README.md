@@ -1,5 +1,5 @@
 ## About the repo branch
-This is one sample repo to protopyte how anyth maven project can be executed as `mvn cloud builder` in **Google cloud build**. 
+This is one sample repo to protopyte how any maven project can be executed as `mvn cloud builder` in **Google cloud build**. 
 
 Refer the documentations
 
