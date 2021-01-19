@@ -22,11 +22,13 @@ gcloud info
 gcloud source repos clone gcp-sample-1 --project=gcp-workshop-trial
 ##save the cloudbuild.yml as google cloud build pipeline.
 git add . & git commit -m "push 25" & git push -u origin master
+```
 
-#create storage bucket ( onetime activity)
+```
+- Create storage bucket ( onetime activity)
+
+```
 gsutil mb -b on -l europe-west1 gs://skc_bkt_1/
-
-
 ```
 
 - trigger the pipeline via 
